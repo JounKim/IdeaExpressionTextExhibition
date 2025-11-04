@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Embed Example</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 아이콘 버튼 -->
+  <div class="icon-container">
+    <button id="openIframeBtn" class="icon-button">
+      🌐
+    </button>
+  </div>
+
+  <!-- iframe 팝업 -->
+  <div id="iframeModal" class="modal">
+    <div class="modal-content">
+      <span id="closeIframeBtn" class="close">&times;</span>
+      <iframe 
+        src="https://audth517.github.io/letter-project/" 
+        frameborder="0" 
+        class="iframe-view">
+      </iframe>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
