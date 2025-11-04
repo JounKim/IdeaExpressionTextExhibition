@@ -1,24 +1,17 @@
-document.getElementById("openPopupBtn").addEventListener("click", () => {
-  const popupWidth = 720;
-  const popupHeight = 580;
+document.querySelectorAll('.icon-button').forEach(button => {
+  button.addEventListener('click', () => {
+    const url = button.getAttribute('data-url');
+    const width = 800;
+    const height = 500;
+    const left = (window.screen.width - width) / 2;
+    const top = (window.screen.height - height) / 2;
 
-  // 화면 가운데 정렬
-  const left = (screen.width / 2) - (popupWidth / 2);
-  const top = (screen.height / 2) - (popupHeight / 2);
+    const popup = window.open(
+      url,
+      '_blank',
+      `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
+    );
 
-  // 팝업 옵션 정의
-  const popupOptions = `
-    width=${popupWidth},
-    height=${popupHeight},
-    left=${left},
-    top=${top},
-    resizable=no,
-    scrollbars=yes,
-    status=no,
-    toolbar=no,
-    menubar=no
-  `;
-
-  // 팝업 열기
-  window.open("https://audth517.github.io/letter-project/", "LetterProjectPopup", popupOptions);
+    if (popup) popup.focus();
+  });
 });

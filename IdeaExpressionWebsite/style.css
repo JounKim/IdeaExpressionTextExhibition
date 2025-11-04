@@ -1,27 +1,33 @@
-/* 전체 화면 기본 스타일 */
-body {
+html, body {
+  height: 100%;
   margin: 0;
-  height: 100vh;
-  background: linear-gradient(145deg, #f5f7fa, #c3cfe2);
+  background: #fafafa;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Pretendard", sans-serif;
+  font-family: system-ui, sans-serif;
 }
 
-/* 아이콘 버튼 */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 80px);
+  grid-gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+
 .icon-button {
-  font-size: 42px;
+  font-size: 36px;
+  padding: 18px;
+  background: #fff;
   border: none;
-  cursor: pointer;
-  padding: 20px;
   border-radius: 50%;
-  background: white;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.25s ease;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .icon-button:hover {
   transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
 }
