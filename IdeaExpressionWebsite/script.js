@@ -1,20 +1,24 @@
-const openBtn = document.getElementById('openIframeBtn');
-const modal = document.getElementById('iframeModal');
-const closeBtn = document.getElementById('closeIframeBtn');
+document.getElementById("openPopupBtn").addEventListener("click", () => {
+  const popupWidth = 720;
+  const popupHeight = 580;
 
-// 아이콘 클릭 시 iframe 열기
-openBtn.addEventListener('click', () => {
-  modal.style.display = 'block';
-});
+  // 화면 가운데 정렬
+  const left = (screen.width / 2) - (popupWidth / 2);
+  const top = (screen.height / 2) - (popupHeight / 2);
 
-// 닫기 버튼 클릭 시 iframe 닫기
-closeBtn.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
+  // 팝업 옵션 정의
+  const popupOptions = `
+    width=${popupWidth},
+    height=${popupHeight},
+    left=${left},
+    top=${top},
+    resizable=no,
+    scrollbars=yes,
+    status=no,
+    toolbar=no,
+    menubar=no
+  `;
 
-// 배경 클릭 시 닫기
-window.addEventListener('click', (event) => {
-  if (event.target === modal) {
-    modal.style.display = 'none';
-  }
+  // 팝업 열기
+  window.open("https://audth517.github.io/letter-project/", "LetterProjectPopup", popupOptions);
 });
