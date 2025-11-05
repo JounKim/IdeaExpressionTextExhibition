@@ -5,38 +5,73 @@ body {
   color: #fff;
 }
 
+/* ---- 프로젝트 목록 ---- */
 nav {
   background: #111;
   text-align: center;
   width: 100vw;
-  color: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 nav ul {
   margin: 0;
-  padding: 0.5em 0;
+  padding: 0;
   list-style: none;
 }
 
 nav li {
   display: inline-block;
-  margin: 0.4em 0.8em;
+  margin: 0.5em 0.8em;
+  padding: 0.6em 1.2em;
+  background: #222;
+  border-radius: 8px;
   cursor: pointer;
-  padding: 0.3em 0.8em;
-  border-radius: 6px;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 nav li:hover {
   background: #444;
+  transform: scale(1.05);
+}
+
+/* ---- iframe 컨테이너 ---- */
+#iframe-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none; /* 초기에는 숨김 */
+  flex-direction: column;
+  background: #000;
+}
+
+.iframe-header {
+  background: #111;
+  padding: 0.8em;
+  text-align: left;
+}
+
+#back-btn {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 0.4em 0.8em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#back-btn:hover {
+  background: #333;
 }
 
 iframe {
-  width: 100vw;
-  height: calc(100svh - 3em);
-  border: 0;
+  flex-grow: 1;
+  width: 100%;
+  border: none;
   background: #fff;
 }

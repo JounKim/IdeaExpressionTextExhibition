@@ -11,30 +11,26 @@ const urls = [
   "https://psyong0719.github.io/letters-project/"
 ];
 
-const iframe = document.querySelector("iframe");
+const projectList = document.getElementById("project-list");
+const iframeContainer = document.getElementById("iframe-container");
+const iframe = iframeContainer.querySelector("iframe");
+const backBtn = document.getElementById("back-btn");
 
-function setIframeSrc(index) {
-  if (index >= 0 && index < urls.length) {
-    iframe.src = urls[index];
-    setTimeout(() => {
-      iframe.focus();
-      iframe.contentWindow?.focus();
-    }, 300);
-  }
-}
-
-// 초기 포커스
-iframe.onload = () => {
-  setTimeout(() => {
-    iframe.focus();
-    iframe.contentWindow?.focus();
-  }, 100);
-};
-
-// 각 프로젝트 버튼 클릭 시 iframe 교체
+// 각 프로젝트 클릭 시 iframe 보이기
 urls.forEach((url, index) => {
-  const element = document.getElementById(`p${index + 1}`);
-  if (element) {
-    element.addEventListener("click", () => setIframeSrc(index));
+  const li = document.getElementById(`p${index + 1}`);
+  if (li) {
+    li.addEventListener("click", () => {
+      projectList.style.display = "none";          // 목록 숨기기
+      iframeContainer.style.display = "flex";      // iframe 화면 보이기
+      iframe.src = url;
+    });
   }
+});
+
+// 뒤로가기 클릭 시 다시 목록으로
+backBtn.addEventListener("click", () => {
+  iframe.src = "";
+  iframeContainer.style.display = "none";          // iframe 숨기기
+  projectList.style.display = "flex";              // 목록 다시 표시
 });
