@@ -3,6 +3,7 @@ body {
   font-family: system-ui, sans-serif;
   background: #000;
   color: #fff;
+  overflow: hidden;
 }
 
 /* ---- 프로젝트 목록 ---- */
@@ -14,6 +15,13 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+nav.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
 }
 
 nav ul {
@@ -40,13 +48,19 @@ nav li:hover {
 /* ---- iframe 컨테이너 ---- */
 #iframe-container {
   position: fixed;
-  top: 0;
+  top: 100%; /* 화면 아래쪽에서 시작 */
   left: 0;
   width: 100vw;
   height: 100vh;
-  display: none; /* 초기에는 숨김 */
-  flex-direction: column;
   background: #000;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+  transition: top 0.6s ease;
+}
+
+#iframe-container.active {
+  top: 0; /* 위로 올라와서 등장 */
 }
 
 .iframe-header {

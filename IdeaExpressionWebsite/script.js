@@ -16,21 +16,26 @@ const iframeContainer = document.getElementById("iframe-container");
 const iframe = iframeContainer.querySelector("iframe");
 const backBtn = document.getElementById("back-btn");
 
-// 각 프로젝트 클릭 시 iframe 보이기
+// 프로젝트 클릭 시 iframe 전환
 urls.forEach((url, index) => {
   const li = document.getElementById(`p${index + 1}`);
   if (li) {
     li.addEventListener("click", () => {
-      projectList.style.display = "none";          // 목록 숨기기
-      iframeContainer.style.display = "flex";      // iframe 화면 보이기
+      // 목록이 사라지고 iframe 올라옴
+      projectList.classList.add("hidden");
       iframe.src = url;
+      setTimeout(() => {
+        iframeContainer.classList.add("active");
+      }, 200);
     });
   }
 });
 
 // 뒤로가기 클릭 시 다시 목록으로
 backBtn.addEventListener("click", () => {
+  iframeContainer.classList.remove("active");
   iframe.src = "";
-  iframeContainer.style.display = "none";          // iframe 숨기기
-  projectList.style.display = "flex";              // 목록 다시 표시
+  setTimeout(() => {
+    projectList.classList.remove("hidden");
+  }, 400); // 전환 타이밍 맞춤
 });
