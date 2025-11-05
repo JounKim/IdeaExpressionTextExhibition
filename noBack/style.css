@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+nav {
+  background: #111;
+  text-align: center;
+  width: 100vw;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0.5em 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin: 0.4em 0.8em;
+  cursor: pointer;
+  padding: 0.3em 0.8em;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+nav li:hover {
+  background: #444;
+}
+
+iframe {
+  width: 100vw;
+  height: calc(100svh - 3em);
+  border: 0;
+  background: #fff;
+}
