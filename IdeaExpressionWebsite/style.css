@@ -1,33 +1,42 @@
-html, body {
-  height: 100%;
+body {
   margin: 0;
-  background: #fafafa;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-family: system-ui, sans-serif;
+  background: #000;
+  color: #fff;
 }
 
-.icon-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 80px);
-  grid-gap: 24px;
-  justify-content: center;
-  align-items: center;
+nav {
+  background: #111;
+  text-align: center;
+  width: 100vw;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.icon-button {
-  font-size: 36px;
-  padding: 18px;
-  background: #fff;
-  border: none;
-  border-radius: 50%;
+nav ul {
+  margin: 0;
+  padding: 0.5em 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin: 0.4em 0.8em;
   cursor: pointer;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 0.3em 0.8em;
+  border-radius: 6px;
+  transition: background 0.3s ease;
 }
 
-.icon-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+nav li:hover {
+  background: #444;
+}
+
+iframe {
+  width: 100vw;
+  height: calc(100svh - 3em);
+  border: 0;
+  background: #fff;
 }

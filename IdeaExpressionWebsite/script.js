@@ -1,17 +1,40 @@
-document.querySelectorAll('.icon-button').forEach(button => {
-  button.addEventListener('click', () => {
-    const url = button.getAttribute('data-url');
-    const width = 800;
-    const height = 500;
-    const left = (window.screen.width - width) / 2;
-    const top = (window.screen.height - height) / 2;
+const urls = [
+  "https://channghyunpark.github.io/letters_project/",
+  "https://taekyng1205.github.io/letters/",
+  "https://dyderks.github.io/Letters---Idea-Expression/",
+  "https://simplylovely1.github.io/letters-project/",
+  "https://nghi-oo0.github.io/letters_project/",
+  "https://kmb3322.github.io/letters-project/",
+  "https://azel2ne.github.io/zeline-Letters/",
+  "https://wooeekim.github.io/Cake/",
+  "https://audth517.github.io/letter-project/",
+  "https://psyong0719.github.io/letters-project/"
+];
 
-    const popup = window.open(
-      url,
-      '_blank',
-      `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
-    );
+const iframe = document.querySelector("iframe");
 
-    if (popup) popup.focus();
-  });
+function setIframeSrc(index) {
+  if (index >= 0 && index < urls.length) {
+    iframe.src = urls[index];
+    setTimeout(() => {
+      iframe.focus();
+      iframe.contentWindow?.focus();
+    }, 300);
+  }
+}
+
+// 초기 포커스
+iframe.onload = () => {
+  setTimeout(() => {
+    iframe.focus();
+    iframe.contentWindow?.focus();
+  }, 100);
+};
+
+// 각 프로젝트 버튼 클릭 시 iframe 교체
+urls.forEach((url, index) => {
+  const element = document.getElementById(`p${index + 1}`);
+  if (element) {
+    element.addEventListener("click", () => setIframeSrc(index));
+  }
 });
