@@ -1,4 +1,3 @@
-// 11개 웹페이지 주소
 const pageUrls = [
   "https://kmb3322.github.io/letters-project/",
   "https://simplylovely1.github.io/letters-project/",
@@ -13,7 +12,6 @@ const pageUrls = [
   "https://ronin-bominkim.github.io/Introduction-of-how-to-brush-my-teeth/"
 ];
 
-// 11개 유튜브 영상 주소
 const videoUrls = [
   "https://www.youtube.com/embed/7mUhhZDwLWc",
   "https://www.youtube.com/embed/LFR0N02L0_c",
@@ -33,38 +31,29 @@ const workspace = document.getElementById("workspace");
 const webFrame = document.getElementById("web-frame");
 const videoFrame = document.getElementById("video-frame");
 const backBtn = document.getElementById("back-btn");
+const switchBtn = document.getElementById("switch-btn");
 
-const YT_PARAMS = "?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0";
+const YT_PARAMS = "?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0";
 
-// 각 프로젝트 클릭 → 웹 + 영상 동시에 로드
 pageUrls.forEach((url, i) => {
   const li = document.getElementById(`p${i + 1}`);
   if (li) {
     li.addEventListener("click", () => {
       projectList.classList.add("hidden");
-
-      // iframe 로드
       webFrame.src = pageUrls[i];
       videoFrame.src = videoUrls[i] + YT_PARAMS;
-
       setTimeout(() => {
         workspace.classList.add("active");
-        workspace.classList.remove("video-front"); // 기본은 웹이 앞
+        workspace.classList.remove("video-front");
       }, 300);
     });
   }
 });
 
-// iframe 클릭 시 창 전환
-videoFrame.addEventListener("click", () => {
-  workspace.classList.add("video-front");
+switchBtn.addEventListener("click", () => {
+  workspace.classList.toggle("video-front");
 });
 
-webFrame.addEventListener("click", () => {
-  workspace.classList.remove("video-front");
-});
-
-// 뒤로가기 버튼
 backBtn.addEventListener("click", () => {
   workspace.classList.remove("active", "video-front");
   webFrame.src = "";
