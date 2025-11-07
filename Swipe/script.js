@@ -1,3 +1,5 @@
+let player = null; // YouTube Player 객체
+
 const pageUrls = [
   "https://kmb3322.github.io/letters-project/",
   "https://simplylovely1.github.io/letters-project/",
@@ -12,36 +14,45 @@ const pageUrls = [
   "https://ronin-bominkim.github.io/Introduction-of-how-to-brush-my-teeth/"
 ];
 
-const videoUrls = [
-  "https://www.youtube.com/embed/7mUhhZDwLWc",
-  "https://www.youtube.com/embed/LFR0N02L0_c",
-  "https://www.youtube.com/embed/vdYJpoTUwWQ",
-  "https://www.youtube.com/embed/1nUQCp8T_bs",
-  "https://www.youtube.com/embed/-tYDPdmNqMA",
-  "https://www.youtube.com/embed/JGeeeMiD7R4",
-  "https://www.youtube.com/embed/aAckiP1JPFI",
-  "https://www.youtube.com/embed/k1YFgJUlWx0",
-  "https://www.youtube.com/embed/kBsM6uN62mY",
-  "https://www.youtube.com/embed/n5bjF6jh5O8",
-  "https://www.youtube.com/embed/8kRsg47xctA"
+const videoIds = [
+  "7mUhhZDwLWc", "LFR0N02L0_c", "vdYJpoTUwWQ",
+  "1nUQCp8T_bs", "-tYDPdmNqMA", "JGeeeMiD7R4",
+  "aAckiP1JPFI", "k1YFgJUlWx0", "kBsM6uN62mY",
+  "n5bjF6jh5O8", "8kRsg47xctA"
 ];
 
 const projectList = document.getElementById("project-list");
 const workspace = document.getElementById("workspace");
 const webFrame = document.getElementById("web-frame");
-const videoFrame = document.getElementById("video-frame");
 const backBtn = document.getElementById("back-btn");
 const switchBtn = document.getElementById("switch-btn");
 
-const YT_PARAMS = "?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0";
+// YouTube API 로드 후 호출되는 함수
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player("player", {
+    videoId: "",
+    playerVars: {
+      autoplay: 0,
+      mute: 0,
+      controls: 0,
+      modestbranding: 1,
+      rel: 0,
+      showinfo: 0
+    }
+  });
+}
 
+// 프로젝트 클릭 → 웹+비디오 로드
 pageUrls.forEach((url, i) => {
   const li = document.getElementById(`p${i + 1}`);
   if (li) {
     li.addEventListener("click", () => {
       projectList.classList.add("hidden");
       webFrame.src = pageUrls[i];
-      videoFrame.src = videoUrls[i] + YT_PARAMS;
+      if (player) {
+        player.loadVideoById(videoIds[i]);
+        player.pauseVideo(); // 처음엔 정지 상태
+      }
       setTimeout(() => {
         workspace.classList.add("active");
         workspace.classList.remove("video-front");
@@ -50,14 +61,20 @@ pageUrls.forEach((url, i) => {
   }
 });
 
+// Switch 버튼으로 전환
 switchBtn.addEventListener("click", () => {
-  workspace.classList.toggle("video-front");
+  const isVideoFront = workspace.classList.toggle("video-front");
+  if (player) {
+    if (isVideoFront) player.playVideo();
+    else player.pauseVideo();
+  }
 });
 
+// 뒤로가기 버튼
 backBtn.addEventListener("click", () => {
   workspace.classList.remove("active", "video-front");
   webFrame.src = "";
-  videoFrame.src = "";
+  if (player) player.stopVideo();
   setTimeout(() => {
     projectList.classList.remove("hidden");
   }, 500);
