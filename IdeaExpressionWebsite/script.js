@@ -1,14 +1,15 @@
 const urls = [
-  "https://channghyunpark.github.io/letters_project/",
-  "https://taekyng1205.github.io/letters/",
-  "https://dyderks.github.io/Letters---Idea-Expression/",
+  "https://kmb3322.github.io/letters-project/",
   "https://simplylovely1.github.io/letters-project/",
   "https://nghi-oo0.github.io/letters_project/",
-  "https://kmb3322.github.io/letters-project/",
-  "https://azel2ne.github.io/zeline-Letters/",
-  "https://wooeekim.github.io/Cake/",
-  "https://audth517.github.io/letter-project/",
-  "https://psyong0719.github.io/letters-project/"
+  "https://channghyunpark.github.io/letters_project/",
+  "https://delta0417.github.io/2.Letters/",
+  "https://wooyoungkang.github.io/letters/",
+  "https://jqpz.github.io/Letters/",
+  "https://dav1dtsoy.github.io/letters-DavidTsoy/",
+  "https://lnnew.github.io/ID202_LP4U/",
+  "https://yjj8895-git.github.io/letters-JaeJunYoun/",
+  "https://ronin-bominkim.github.io/Introduction-of-how-to-brush-my-teeth/"
 ];
 
 const projectList = document.getElementById("project-list");
@@ -39,3 +40,4 @@ backBtn.addEventListener("click", () => {
     projectList.classList.remove("hidden");
   }, 400); // 전환 타이밍 맞춤
 });
+
