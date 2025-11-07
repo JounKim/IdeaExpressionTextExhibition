@@ -17,21 +17,22 @@ const iframeContainer = document.getElementById("iframe-container");
 const iframe = iframeContainer.querySelector("iframe");
 const backBtn = document.getElementById("back-btn");
 
-// 클릭 시 영상 보여주기
+// 자동재생 + UI 최소화 옵션
+const YT_PARAMS = "?autoplay=1&controls=0&modestbranding=1&rel=0&showinfo=0";
+
 videoUrls.forEach((url, index) => {
   const li = document.getElementById(`p${index + 1}`);
   if (li) {
     li.addEventListener("click", () => {
-      projectList.classList.add("hidden"); // 부드럽게 사라짐
-      iframe.src = url + "?autoplay=1";
+      projectList.classList.add("hidden");
+      iframe.src = url + YT_PARAMS;
       setTimeout(() => {
-        iframeContainer.classList.add("active"); // 위로 슬라이드
+        iframeContainer.classList.add("active");
       }, 300);
     });
   }
 });
 
-// 뒤로가기 버튼
 backBtn.addEventListener("click", () => {
   iframeContainer.classList.remove("active");
   iframe.src = "";
