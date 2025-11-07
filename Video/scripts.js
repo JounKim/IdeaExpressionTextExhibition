@@ -17,21 +17,25 @@ const iframeContainer = document.getElementById("iframe-container");
 const iframe = iframeContainer.querySelector("iframe");
 const backBtn = document.getElementById("back-btn");
 
-// 영상 선택 시 재생 화면 전환
+// 클릭 시 영상 보여주기
 videoUrls.forEach((url, index) => {
-  const li = document.getElementById(`p${index+1}`);
+  const li = document.getElementById(`p${index + 1}`);
   if (li) {
     li.addEventListener("click", () => {
-      iframe.src = url;
-      projectList.style.display = "none";
-      iframeContainer.classList.add("active");
+      projectList.classList.add("hidden"); // 부드럽게 사라짐
+      iframe.src = url + "?autoplay=1";
+      setTimeout(() => {
+        iframeContainer.classList.add("active"); // 위로 슬라이드
+      }, 300);
     });
   }
 });
 
-// 뒤로가기 버튼 클릭 시 목록 복귀
+// 뒤로가기 버튼
 backBtn.addEventListener("click", () => {
-  iframe.src = "";
   iframeContainer.classList.remove("active");
-  projectList.style.display = "flex";
+  iframe.src = "";
+  setTimeout(() => {
+    projectList.classList.remove("hidden");
+  }, 500);
 });
