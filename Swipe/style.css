@@ -1,15 +1,13 @@
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
   background: #000;
-  color: #fff;
+  font-family: system-ui;
   overflow: hidden;
+  color: #fff;
 }
 
-/* ---- 프로젝트 목록 ---- */
 nav {
   background: #111;
-  text-align: center;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -24,103 +22,80 @@ nav.hidden {
   pointer-events: none;
 }
 
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
 nav li {
   display: inline-block;
-  margin: 0.5em 0.8em;
+  margin: 0.5em;
   padding: 0.6em 1.2em;
   background: #222;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-nav li:hover {
-  background: #444;
-  transform: scale(1.05);
-}
-
-/* ---- workspace (iframe zone) ---- */
 #workspace {
   position: fixed;
   top: 100%;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  transition: top 0.6s ease;
-  overflow: hidden;
+  transition: top 0.7s ease;
 }
 
 #workspace.active {
   top: 0;
 }
 
-.iframe-header {
-  background: #111;
-  padding: 0.8em;
-  text-align: left;
-  z-index: 5;
-  position: relative;
-}
-
-#back-btn {
-  background: transparent;
-  color: #fff;
+#back-btn, #switch-btn {
+  position: fixed;
+  top: 15px;
+  z-index: 10;
+  background: rgba(20,20,20,0.7);
   border: 1px solid #555;
-  padding: 0.4em 0.8em;
+  color: #fff;
+  padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s;
 }
+#back-btn { left: 15px; }
+#switch-btn { right: 15px; }
 
-#back-btn:hover {
-  background: #333;
-}
-
-/* ---- 두 개의 iframe 겹치기 ---- */
+/* iframe을 작은 창처럼 */
 iframe {
   position: absolute;
-  top: 2.5em;
-  left: 0;
-  width: 100%;
-  height: calc(100% - 2.5em);
+  width: 70vw;
+  height: 75vh;
+  top: 50%;
+  left: 50%;
   border: none;
-  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
+  transform: translate(-50%, -50%) scale(0.95);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 초기 상태: 웹이 앞, 비디오는 뒤 */
+/* 초기 상태 - 웹이 앞, 비디오는 뒤 */
 #web-frame {
-  z-index: 2;
-  transform: scale(1);
+  z-index: 3;
+  transform: translate(-55%, -52%) rotate(-1deg) scale(1);
 }
 
 #video-frame {
   z-index: 1;
-  transform: scale(0.92);
-  filter: blur(3px);
-  opacity: 0.8;
+  transform: translate(-45%, -48%) rotate(2deg) scale(0.9);
+  filter: brightness(0.8) blur(1px);
+  opacity: 0.9;
 }
 
-/* video가 앞으로 전환될 때 */
+/* 전환 시 */
 #workspace.video-front #video-frame {
   z-index: 3;
-  transform: scale(1);
+  transform: translate(-50%, -50%) rotate(-1deg) scale(1);
   filter: none;
   opacity: 1;
 }
 
 #workspace.video-front #web-frame {
   z-index: 1;
-  transform: scale(0.9);
-  filter: blur(3px);
-  opacity: 0.7;
+  transform: translate(-48%, -52%) rotate(2deg) scale(0.9);
+  filter: brightness(0.8) blur(1px);
+  opacity: 0.8;
 }
