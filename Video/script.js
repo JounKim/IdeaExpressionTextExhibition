@@ -17,14 +17,15 @@ const iframeContainer = document.getElementById("iframe-container");
 const iframe = iframeContainer.querySelector("iframe");
 const backBtn = document.getElementById("back-btn");
 
-// 자동재생 + UI 최소화 옵션
-const YT_PARAMS = "?autoplay=1&controls=0&modestbranding=1&rel=0&showinfo=0";
+// 자동재생 + 소리 ON + 최소 UI
+const YT_PARAMS = "?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0";
 
 videoUrls.forEach((url, index) => {
   const li = document.getElementById(`p${index + 1}`);
   if (li) {
     li.addEventListener("click", () => {
       projectList.classList.add("hidden");
+      // 클릭 이벤트 안에서 iframe.src를 설정하면 브라우저가 허용함
       iframe.src = url + YT_PARAMS;
       setTimeout(() => {
         iframeContainer.classList.add("active");
